@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.ExchangeItemMapper" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.ExchangeItem" >
+    <id column="ID" property="id" jdbcType="NUMERIC" />
+    <result column="EID" property="eid" jdbcType="NUMERIC" />
+    <result column="OLD_TITLE" property="oldTitle" jdbcType="VARCHAR" />
+    <result column="OLD_NUMID" property="oldNumid" jdbcType="VARCHAR" />
+    <result column="OLD_OUTERID" property="oldOuterid" jdbcType="VARCHAR" />
+    <result column="OLD_NUM" property="oldNum" jdbcType="NUMERIC" />
+    <result column="NEW_NUMID" property="newNumid" jdbcType="VARCHAR" />
+    <result column="NEW_OUTERID" property="newOuterid" jdbcType="VARCHAR" />
+    <result column="NEW_NUM" property="newNum" jdbcType="NUMERIC" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="UNIT_ID" property="unitId" jdbcType="NUMERIC" />
+    <result column="PARENT_UNIT_ID" property="parentUnitId" jdbcType="NUMERIC" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EID, OLD_TITLE, OLD_NUMID, OLD_OUTERID, OLD_NUM, NEW_NUMID, NEW_OUTERID, NEW_NUM, 
+    ORDER_ID, UNIT_ID, PARENT_UNIT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from WTC_SH_EXCHANGE_ITEM_T
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from WTC_SH_EXCHANGE_ITEM_T
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.ExchangeItem" >
+    insert into WTC_SH_EXCHANGE_ITEM_T (ID, EID, OLD_TITLE, 
+      OLD_NUMID, OLD_OUTERID, OLD_NUM, 
+      NEW_NUMID, NEW_OUTERID, NEW_NUM, 
+      ORDER_ID, UNIT_ID, PARENT_UNIT_ID
+      )
+    values (#{id,jdbcType=NUMERIC}, #{eid,jdbcType=NUMERIC}, #{oldTitle,jdbcType=VARCHAR}, 
+      #{oldNumid,jdbcType=VARCHAR}, #{oldOuterid,jdbcType=VARCHAR}, #{oldNum,jdbcType=NUMERIC}, 
+      #{newNumid,jdbcType=VARCHAR}, #{newOuterid,jdbcType=VARCHAR}, #{newNum,jdbcType=NUMERIC}, 
+      #{orderId,jdbcType=VARCHAR}, #{unitId,jdbcType=NUMERIC}, #{parentUnitId,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.ExchangeItem" >
+    insert into WTC_SH_EXCHANGE_ITEM_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="eid != null" >
+        EID,
+      </if>
+      <if test="oldTitle != null" >
+        OLD_TITLE,
+      </if>
+      <if test="oldNumid != null" >
+        OLD_NUMID,
+      </if>
+      <if test="oldOuterid != null" >
+        OLD_OUTERID,
+      </if>
+      <if test="oldNum != null" >
+        OLD_NUM,
+      </if>
+      <if test="newNumid != null" >
+        NEW_NUMID,
+      </if>
+      <if test="newOuterid != null" >
+        NEW_OUTERID,
+      </if>
+      <if test="newNum != null" >
+        NEW_NUM,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="unitId != null" >
+        UNIT_ID,
+      </if>
+      <if test="parentUnitId != null" >
+        PARENT_UNIT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=NUMERIC},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=NUMERIC},
+      </if>
+      <if test="oldTitle != null" >
+        #{oldTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="oldNumid != null" >
+        #{oldNumid,jdbcType=VARCHAR},
+      </if>
+      <if test="oldOuterid != null" >
+        #{oldOuterid,jdbcType=VARCHAR},
+      </if>
+      <if test="oldNum != null" >
+        #{oldNum,jdbcType=NUMERIC},
+      </if>
+      <if test="newNumid != null" >
+        #{newNumid,jdbcType=VARCHAR},
+      </if>
+      <if test="newOuterid != null" >
+        #{newOuterid,jdbcType=VARCHAR},
+      </if>
+      <if test="newNum != null" >
+        #{newNum,jdbcType=NUMERIC},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null" >
+        #{unitId,jdbcType=NUMERIC},
+      </if>
+      <if test="parentUnitId != null" >
+        #{parentUnitId,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.ExchangeItem" >
+    update WTC_SH_EXCHANGE_ITEM_T
+    <set >
+      <if test="eid != null" >
+        EID = #{eid,jdbcType=NUMERIC},
+      </if>
+      <if test="oldTitle != null" >
+        OLD_TITLE = #{oldTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="oldNumid != null" >
+        OLD_NUMID = #{oldNumid,jdbcType=VARCHAR},
+      </if>
+      <if test="oldOuterid != null" >
+        OLD_OUTERID = #{oldOuterid,jdbcType=VARCHAR},
+      </if>
+      <if test="oldNum != null" >
+        OLD_NUM = #{oldNum,jdbcType=NUMERIC},
+      </if>
+      <if test="newNumid != null" >
+        NEW_NUMID = #{newNumid,jdbcType=VARCHAR},
+      </if>
+      <if test="newOuterid != null" >
+        NEW_OUTERID = #{newOuterid,jdbcType=VARCHAR},
+      </if>
+      <if test="newNum != null" >
+        NEW_NUM = #{newNum,jdbcType=NUMERIC},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null" >
+        UNIT_ID = #{unitId,jdbcType=NUMERIC},
+      </if>
+      <if test="parentUnitId != null" >
+        PARENT_UNIT_ID = #{parentUnitId,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.ExchangeItem" >
+    update WTC_SH_EXCHANGE_ITEM_T
+    set EID = #{eid,jdbcType=NUMERIC},
+      OLD_TITLE = #{oldTitle,jdbcType=VARCHAR},
+      OLD_NUMID = #{oldNumid,jdbcType=VARCHAR},
+      OLD_OUTERID = #{oldOuterid,jdbcType=VARCHAR},
+      OLD_NUM = #{oldNum,jdbcType=NUMERIC},
+      NEW_NUMID = #{newNumid,jdbcType=VARCHAR},
+      NEW_OUTERID = #{newOuterid,jdbcType=VARCHAR},
+      NEW_NUM = #{newNum,jdbcType=NUMERIC},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      UNIT_ID = #{unitId,jdbcType=NUMERIC},
+      PARENT_UNIT_ID = #{parentUnitId,jdbcType=NUMERIC}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

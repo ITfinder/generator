@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.ErrorNotifyDao" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.ErrorNotify" >
+    <id column="ERROR_ID" property="errorId" jdbcType="NUMERIC" />
+    <result column="ERROR_TYPE" property="errorType" jdbcType="VARCHAR" />
+    <result column="INTERFACE_NAME" property="interfaceName" jdbcType="VARCHAR" />
+    <result column="ERROR_CODE" property="errorCode" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="IS_NOTIFY" property="isNotify" jdbcType="VARCHAR" />
+    <result column="NOTIFY_TIME" property="notifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ERROR_ID, ERROR_TYPE, INTERFACE_NAME, ERROR_CODE, REMARK, CREATE_TIME, IS_NOTIFY, 
+    NOTIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from ERROR_NOTIFY_T
+    where ERROR_ID = #{errorId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from ERROR_NOTIFY_T
+    where ERROR_ID = #{errorId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.ErrorNotify" >
+    insert into ERROR_NOTIFY_T (ERROR_ID, ERROR_TYPE, INTERFACE_NAME, 
+      ERROR_CODE, REMARK, CREATE_TIME, 
+      IS_NOTIFY, NOTIFY_TIME)
+    values (#{errorId,jdbcType=NUMERIC}, #{errorType,jdbcType=VARCHAR}, #{interfaceName,jdbcType=VARCHAR}, 
+      #{errorCode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isNotify,jdbcType=VARCHAR}, #{notifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.ErrorNotify" >
+    insert into ERROR_NOTIFY_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="errorId != null" >
+        ERROR_ID,
+      </if>
+      <if test="errorType != null" >
+        ERROR_TYPE,
+      </if>
+      <if test="interfaceName != null" >
+        INTERFACE_NAME,
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="isNotify != null" >
+        IS_NOTIFY,
+      </if>
+      <if test="notifyTime != null" >
+        NOTIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="errorId != null" >
+        #{errorId,jdbcType=NUMERIC},
+      </if>
+      <if test="errorType != null" >
+        #{errorType,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceName != null" >
+        #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNotify != null" >
+        #{isNotify,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyTime != null" >
+        #{notifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.ErrorNotify" >
+    update ERROR_NOTIFY_T
+    <set >
+      <if test="errorType != null" >
+        ERROR_TYPE = #{errorType,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceName != null" >
+        INTERFACE_NAME = #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNotify != null" >
+        IS_NOTIFY = #{isNotify,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyTime != null" >
+        NOTIFY_TIME = #{notifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ERROR_ID = #{errorId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.ErrorNotify" >
+    update ERROR_NOTIFY_T
+    set ERROR_TYPE = #{errorType,jdbcType=VARCHAR},
+      INTERFACE_NAME = #{interfaceName,jdbcType=VARCHAR},
+      ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      IS_NOTIFY = #{isNotify,jdbcType=VARCHAR},
+      NOTIFY_TIME = #{notifyTime,jdbcType=TIMESTAMP}
+    where ERROR_ID = #{errorId,jdbcType=NUMERIC}
+  </update>
+</mapper>

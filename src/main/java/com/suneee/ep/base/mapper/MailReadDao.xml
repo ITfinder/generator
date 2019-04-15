@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.MailReadDao" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.MailRead" >
+    <id column="ID" property="id" jdbcType="NUMERIC" />
+    <result column="MAIL_ID" property="mailId" jdbcType="NUMERIC" />
+    <result column="READ_PERSON" property="readPerson" jdbcType="VARCHAR" />
+    <result column="READ_TIME" property="readTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MAIL_ID, READ_PERSON, READ_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from TY_MAIL_READ_T
+    where ID = #{id,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from TY_MAIL_READ_T
+    where ID = #{id,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.MailRead" >
+    insert into TY_MAIL_READ_T (ID, MAIL_ID, READ_PERSON, 
+      READ_TIME)
+    values (#{id,jdbcType=NUMERIC}, #{mailId,jdbcType=NUMERIC}, #{readPerson,jdbcType=VARCHAR}, 
+      #{readTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.MailRead" >
+    insert into TY_MAIL_READ_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mailId != null" >
+        MAIL_ID,
+      </if>
+      <if test="readPerson != null" >
+        READ_PERSON,
+      </if>
+      <if test="readTime != null" >
+        READ_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=NUMERIC},
+      </if>
+      <if test="mailId != null" >
+        #{mailId,jdbcType=NUMERIC},
+      </if>
+      <if test="readPerson != null" >
+        #{readPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null" >
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.MailRead" >
+    update TY_MAIL_READ_T
+    <set >
+      <if test="mailId != null" >
+        MAIL_ID = #{mailId,jdbcType=NUMERIC},
+      </if>
+      <if test="readPerson != null" >
+        READ_PERSON = #{readPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null" >
+        READ_TIME = #{readTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.MailRead" >
+    update TY_MAIL_READ_T
+    set MAIL_ID = #{mailId,jdbcType=NUMERIC},
+      READ_PERSON = #{readPerson,jdbcType=VARCHAR},
+      READ_TIME = #{readTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=NUMERIC}
+  </update>
+</mapper>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.MailBodyDao" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.MailBody" >
+    <id column="MAIL_ID" property="mailId" jdbcType="NUMERIC" />
+    <result column="FROM_ADDR" property="fromAddr" jdbcType="VARCHAR" />
+    <result column="TO_ADDR" property="toAddr" jdbcType="VARCHAR" />
+    <result column="COPY_TO_ADDR" property="copyToAddr" jdbcType="VARCHAR" />
+    <result column="SECRET_TO_ADDR" property="secretToAddr" jdbcType="VARCHAR" />
+    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
+    <result column="MAIL_TYPE" property="mailType" jdbcType="VARCHAR" />
+    <result column="MAIL_FLAG" property="mailFlag" jdbcType="VARCHAR" />
+    <result column="SRC_ADDED" property="srcAdded" jdbcType="VARCHAR" />
+    <result column="DEC_ADDED" property="decAdded" jdbcType="VARCHAR" />
+    <result column="MAIL_SIZE" property="mailSize" jdbcType="NUMERIC" />
+    <result column="IN_TIME" property="inTime" jdbcType="TIMESTAMP" />
+    <result column="SEND_TIME" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="SEND_RET" property="sendRet" jdbcType="VARCHAR" />
+    <result column="OPER_TIME" property="operTime" jdbcType="TIMESTAMP" />
+    <result column="WORK_NO" property="workNo" jdbcType="VARCHAR" />
+    <result column="BOX_ID" property="boxId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.suneee.ep.base.model.MailBody" extends="BaseResultMap" >
+    <result column="CONTENT" property="content" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MAIL_ID, FROM_ADDR, TO_ADDR, COPY_TO_ADDR, SECRET_TO_ADDR, SUBJECT, MAIL_TYPE, MAIL_FLAG, 
+    SRC_ADDED, DEC_ADDED, MAIL_SIZE, IN_TIME, SEND_TIME, SEND_RET, OPER_TIME, WORK_NO, 
+    BOX_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TY_MAIL_BODY_T
+    where MAIL_ID = #{mailId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from TY_MAIL_BODY_T
+    where MAIL_ID = #{mailId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.MailBody" >
+    insert into TY_MAIL_BODY_T (MAIL_ID, FROM_ADDR, TO_ADDR, 
+      COPY_TO_ADDR, SECRET_TO_ADDR, SUBJECT, 
+      MAIL_TYPE, MAIL_FLAG, SRC_ADDED, 
+      DEC_ADDED, MAIL_SIZE, IN_TIME, 
+      SEND_TIME, SEND_RET, OPER_TIME, 
+      WORK_NO, BOX_ID, CONTENT
+      )
+    values (#{mailId,jdbcType=NUMERIC}, #{fromAddr,jdbcType=VARCHAR}, #{toAddr,jdbcType=VARCHAR}, 
+      #{copyToAddr,jdbcType=VARCHAR}, #{secretToAddr,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
+      #{mailType,jdbcType=VARCHAR}, #{mailFlag,jdbcType=VARCHAR}, #{srcAdded,jdbcType=VARCHAR}, 
+      #{decAdded,jdbcType=VARCHAR}, #{mailSize,jdbcType=NUMERIC}, #{inTime,jdbcType=TIMESTAMP}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{sendRet,jdbcType=VARCHAR}, #{operTime,jdbcType=TIMESTAMP}, 
+      #{workNo,jdbcType=VARCHAR}, #{boxId,jdbcType=VARCHAR}, #{content,jdbcType=CLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.MailBody" >
+    insert into TY_MAIL_BODY_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mailId != null" >
+        MAIL_ID,
+      </if>
+      <if test="fromAddr != null" >
+        FROM_ADDR,
+      </if>
+      <if test="toAddr != null" >
+        TO_ADDR,
+      </if>
+      <if test="copyToAddr != null" >
+        COPY_TO_ADDR,
+      </if>
+      <if test="secretToAddr != null" >
+        SECRET_TO_ADDR,
+      </if>
+      <if test="subject != null" >
+        SUBJECT,
+      </if>
+      <if test="mailType != null" >
+        MAIL_TYPE,
+      </if>
+      <if test="mailFlag != null" >
+        MAIL_FLAG,
+      </if>
+      <if test="srcAdded != null" >
+        SRC_ADDED,
+      </if>
+      <if test="decAdded != null" >
+        DEC_ADDED,
+      </if>
+      <if test="mailSize != null" >
+        MAIL_SIZE,
+      </if>
+      <if test="inTime != null" >
+        IN_TIME,
+      </if>
+      <if test="sendTime != null" >
+        SEND_TIME,
+      </if>
+      <if test="sendRet != null" >
+        SEND_RET,
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME,
+      </if>
+      <if test="workNo != null" >
+        WORK_NO,
+      </if>
+      <if test="boxId != null" >
+        BOX_ID,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mailId != null" >
+        #{mailId,jdbcType=NUMERIC},
+      </if>
+      <if test="fromAddr != null" >
+        #{fromAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddr != null" >
+        #{toAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="copyToAddr != null" >
+        #{copyToAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="secretToAddr != null" >
+        #{secretToAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="mailType != null" >
+        #{mailType,jdbcType=VARCHAR},
+      </if>
+      <if test="mailFlag != null" >
+        #{mailFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="srcAdded != null" >
+        #{srcAdded,jdbcType=VARCHAR},
+      </if>
+      <if test="decAdded != null" >
+        #{decAdded,jdbcType=VARCHAR},
+      </if>
+      <if test="mailSize != null" >
+        #{mailSize,jdbcType=NUMERIC},
+      </if>
+      <if test="inTime != null" >
+        #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendRet != null" >
+        #{sendRet,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null" >
+        #{operTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workNo != null" >
+        #{workNo,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null" >
+        #{boxId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.MailBody" >
+    update TY_MAIL_BODY_T
+    <set >
+      <if test="fromAddr != null" >
+        FROM_ADDR = #{fromAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddr != null" >
+        TO_ADDR = #{toAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="copyToAddr != null" >
+        COPY_TO_ADDR = #{copyToAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="secretToAddr != null" >
+        SECRET_TO_ADDR = #{secretToAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        SUBJECT = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="mailType != null" >
+        MAIL_TYPE = #{mailType,jdbcType=VARCHAR},
+      </if>
+      <if test="mailFlag != null" >
+        MAIL_FLAG = #{mailFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="srcAdded != null" >
+        SRC_ADDED = #{srcAdded,jdbcType=VARCHAR},
+      </if>
+      <if test="decAdded != null" >
+        DEC_ADDED = #{decAdded,jdbcType=VARCHAR},
+      </if>
+      <if test="mailSize != null" >
+        MAIL_SIZE = #{mailSize,jdbcType=NUMERIC},
+      </if>
+      <if test="inTime != null" >
+        IN_TIME = #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendRet != null" >
+        SEND_RET = #{sendRet,jdbcType=VARCHAR},
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workNo != null" >
+        WORK_NO = #{workNo,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null" >
+        BOX_ID = #{boxId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=CLOB},
+      </if>
+    </set>
+    where MAIL_ID = #{mailId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.suneee.ep.base.model.MailBody" >
+    update TY_MAIL_BODY_T
+    set FROM_ADDR = #{fromAddr,jdbcType=VARCHAR},
+      TO_ADDR = #{toAddr,jdbcType=VARCHAR},
+      COPY_TO_ADDR = #{copyToAddr,jdbcType=VARCHAR},
+      SECRET_TO_ADDR = #{secretToAddr,jdbcType=VARCHAR},
+      SUBJECT = #{subject,jdbcType=VARCHAR},
+      MAIL_TYPE = #{mailType,jdbcType=VARCHAR},
+      MAIL_FLAG = #{mailFlag,jdbcType=VARCHAR},
+      SRC_ADDED = #{srcAdded,jdbcType=VARCHAR},
+      DEC_ADDED = #{decAdded,jdbcType=VARCHAR},
+      MAIL_SIZE = #{mailSize,jdbcType=NUMERIC},
+      IN_TIME = #{inTime,jdbcType=TIMESTAMP},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      SEND_RET = #{sendRet,jdbcType=VARCHAR},
+      OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      WORK_NO = #{workNo,jdbcType=VARCHAR},
+      BOX_ID = #{boxId,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=CLOB}
+    where MAIL_ID = #{mailId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.MailBody" >
+    update TY_MAIL_BODY_T
+    set FROM_ADDR = #{fromAddr,jdbcType=VARCHAR},
+      TO_ADDR = #{toAddr,jdbcType=VARCHAR},
+      COPY_TO_ADDR = #{copyToAddr,jdbcType=VARCHAR},
+      SECRET_TO_ADDR = #{secretToAddr,jdbcType=VARCHAR},
+      SUBJECT = #{subject,jdbcType=VARCHAR},
+      MAIL_TYPE = #{mailType,jdbcType=VARCHAR},
+      MAIL_FLAG = #{mailFlag,jdbcType=VARCHAR},
+      SRC_ADDED = #{srcAdded,jdbcType=VARCHAR},
+      DEC_ADDED = #{decAdded,jdbcType=VARCHAR},
+      MAIL_SIZE = #{mailSize,jdbcType=NUMERIC},
+      IN_TIME = #{inTime,jdbcType=TIMESTAMP},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      SEND_RET = #{sendRet,jdbcType=VARCHAR},
+      OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      WORK_NO = #{workNo,jdbcType=VARCHAR},
+      BOX_ID = #{boxId,jdbcType=VARCHAR}
+    where MAIL_ID = #{mailId,jdbcType=NUMERIC}
+  </update>
+</mapper>

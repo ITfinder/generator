@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.WmsMallItemMapper" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.WmsMallItem" >
+    <id column="SKU_CODE" property="skuCode" jdbcType="VARCHAR" />
+    <id column="MALL_NO" property="mallNo" jdbcType="VARCHAR" />
+    <result column="ITEM_ID" property="itemId" jdbcType="NUMERIC" />
+    <result column="ITEM_NUM" property="itemNum" jdbcType="NUMERIC" />
+    <result column="SAFE_NUM" property="safeNum" jdbcType="NUMERIC" />
+    <result column="LOCK_NUM" property="lockNum" jdbcType="NUMERIC" />
+    <result column="SELL_NUM" property="sellNum" jdbcType="NUMERIC" />
+    <result column="STOCK_UPDATE" property="stockUpdate" jdbcType="TIMESTAMP" />
+    <result column="ITEM_PRICE" property="itemPrice" jdbcType="NUMERIC" />
+    <result column="NEW_PRICE" property="newPrice" jdbcType="NUMERIC" />
+    <result column="SELL_PRICE" property="sellPrice" jdbcType="NUMERIC" />
+    <result column="PRICE_UPDATE" property="priceUpdate" jdbcType="TIMESTAMP" />
+    <result column="NEED_UPDATE" property="needUpdate" jdbcType="VARCHAR" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="FEED_ID" property="feedId" jdbcType="VARCHAR" />
+    <result column="JU_NUM" property="juNum" jdbcType="NUMERIC" />
+    <result column="CURRENT_JU_NUM" property="currentJuNum" jdbcType="NUMERIC" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CONFIRM_PERSON" property="confirmPerson" jdbcType="VARCHAR" />
+    <result column="WARE_HOUSE" property="wareHouse" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SKU_CODE, MALL_NO, ITEM_ID, ITEM_NUM, SAFE_NUM, LOCK_NUM, SELL_NUM, STOCK_UPDATE, 
+    ITEM_PRICE, NEW_PRICE, SELL_PRICE, PRICE_UPDATE, NEED_UPDATE, ITEM_NAME, FEED_ID, 
+    JU_NUM, CURRENT_JU_NUM, STATUS, CONFIRM_PERSON, WARE_HOUSE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.suneee.ep.base.model.WmsMallItemKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from WMS_MALL_ITEM_T
+    where SKU_CODE = #{skuCode,jdbcType=VARCHAR}
+      and MALL_NO = #{mallNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.suneee.ep.base.model.WmsMallItemKey" >
+    delete from WMS_MALL_ITEM_T
+    where SKU_CODE = #{skuCode,jdbcType=VARCHAR}
+      and MALL_NO = #{mallNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.WmsMallItem" >
+    insert into WMS_MALL_ITEM_T (SKU_CODE, MALL_NO, ITEM_ID, 
+      ITEM_NUM, SAFE_NUM, LOCK_NUM, 
+      SELL_NUM, STOCK_UPDATE, ITEM_PRICE, 
+      NEW_PRICE, SELL_PRICE, PRICE_UPDATE, 
+      NEED_UPDATE, ITEM_NAME, FEED_ID, 
+      JU_NUM, CURRENT_JU_NUM, STATUS, 
+      CONFIRM_PERSON, WARE_HOUSE)
+    values (#{skuCode,jdbcType=VARCHAR}, #{mallNo,jdbcType=VARCHAR}, #{itemId,jdbcType=NUMERIC}, 
+      #{itemNum,jdbcType=NUMERIC}, #{safeNum,jdbcType=NUMERIC}, #{lockNum,jdbcType=NUMERIC}, 
+      #{sellNum,jdbcType=NUMERIC}, #{stockUpdate,jdbcType=TIMESTAMP}, #{itemPrice,jdbcType=NUMERIC}, 
+      #{newPrice,jdbcType=NUMERIC}, #{sellPrice,jdbcType=NUMERIC}, #{priceUpdate,jdbcType=TIMESTAMP}, 
+      #{needUpdate,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{feedId,jdbcType=VARCHAR}, 
+      #{juNum,jdbcType=NUMERIC}, #{currentJuNum,jdbcType=NUMERIC}, #{status,jdbcType=VARCHAR}, 
+      #{confirmPerson,jdbcType=VARCHAR}, #{wareHouse,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.WmsMallItem" >
+    insert into WMS_MALL_ITEM_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="skuCode != null" >
+        SKU_CODE,
+      </if>
+      <if test="mallNo != null" >
+        MALL_NO,
+      </if>
+      <if test="itemId != null" >
+        ITEM_ID,
+      </if>
+      <if test="itemNum != null" >
+        ITEM_NUM,
+      </if>
+      <if test="safeNum != null" >
+        SAFE_NUM,
+      </if>
+      <if test="lockNum != null" >
+        LOCK_NUM,
+      </if>
+      <if test="sellNum != null" >
+        SELL_NUM,
+      </if>
+      <if test="stockUpdate != null" >
+        STOCK_UPDATE,
+      </if>
+      <if test="itemPrice != null" >
+        ITEM_PRICE,
+      </if>
+      <if test="newPrice != null" >
+        NEW_PRICE,
+      </if>
+      <if test="sellPrice != null" >
+        SELL_PRICE,
+      </if>
+      <if test="priceUpdate != null" >
+        PRICE_UPDATE,
+      </if>
+      <if test="needUpdate != null" >
+        NEED_UPDATE,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="feedId != null" >
+        FEED_ID,
+      </if>
+      <if test="juNum != null" >
+        JU_NUM,
+      </if>
+      <if test="currentJuNum != null" >
+        CURRENT_JU_NUM,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="confirmPerson != null" >
+        CONFIRM_PERSON,
+      </if>
+      <if test="wareHouse != null" >
+        WARE_HOUSE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="skuCode != null" >
+        #{skuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mallNo != null" >
+        #{mallNo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=NUMERIC},
+      </if>
+      <if test="itemNum != null" >
+        #{itemNum,jdbcType=NUMERIC},
+      </if>
+      <if test="safeNum != null" >
+        #{safeNum,jdbcType=NUMERIC},
+      </if>
+      <if test="lockNum != null" >
+        #{lockNum,jdbcType=NUMERIC},
+      </if>
+      <if test="sellNum != null" >
+        #{sellNum,jdbcType=NUMERIC},
+      </if>
+      <if test="stockUpdate != null" >
+        #{stockUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemPrice != null" >
+        #{itemPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="newPrice != null" >
+        #{newPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="priceUpdate != null" >
+        #{priceUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="needUpdate != null" >
+        #{needUpdate,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="feedId != null" >
+        #{feedId,jdbcType=VARCHAR},
+      </if>
+      <if test="juNum != null" >
+        #{juNum,jdbcType=NUMERIC},
+      </if>
+      <if test="currentJuNum != null" >
+        #{currentJuNum,jdbcType=NUMERIC},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmPerson != null" >
+        #{confirmPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="wareHouse != null" >
+        #{wareHouse,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.WmsMallItem" >
+    update WMS_MALL_ITEM_T
+    <set >
+      <if test="itemId != null" >
+        ITEM_ID = #{itemId,jdbcType=NUMERIC},
+      </if>
+      <if test="itemNum != null" >
+        ITEM_NUM = #{itemNum,jdbcType=NUMERIC},
+      </if>
+      <if test="safeNum != null" >
+        SAFE_NUM = #{safeNum,jdbcType=NUMERIC},
+      </if>
+      <if test="lockNum != null" >
+        LOCK_NUM = #{lockNum,jdbcType=NUMERIC},
+      </if>
+      <if test="sellNum != null" >
+        SELL_NUM = #{sellNum,jdbcType=NUMERIC},
+      </if>
+      <if test="stockUpdate != null" >
+        STOCK_UPDATE = #{stockUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemPrice != null" >
+        ITEM_PRICE = #{itemPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="newPrice != null" >
+        NEW_PRICE = #{newPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="sellPrice != null" >
+        SELL_PRICE = #{sellPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="priceUpdate != null" >
+        PRICE_UPDATE = #{priceUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="needUpdate != null" >
+        NEED_UPDATE = #{needUpdate,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="feedId != null" >
+        FEED_ID = #{feedId,jdbcType=VARCHAR},
+      </if>
+      <if test="juNum != null" >
+        JU_NUM = #{juNum,jdbcType=NUMERIC},
+      </if>
+      <if test="currentJuNum != null" >
+        CURRENT_JU_NUM = #{currentJuNum,jdbcType=NUMERIC},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmPerson != null" >
+        CONFIRM_PERSON = #{confirmPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="wareHouse != null" >
+        WARE_HOUSE = #{wareHouse,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SKU_CODE = #{skuCode,jdbcType=VARCHAR}
+      and MALL_NO = #{mallNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.WmsMallItem" >
+    update WMS_MALL_ITEM_T
+    set ITEM_ID = #{itemId,jdbcType=NUMERIC},
+      ITEM_NUM = #{itemNum,jdbcType=NUMERIC},
+      SAFE_NUM = #{safeNum,jdbcType=NUMERIC},
+      LOCK_NUM = #{lockNum,jdbcType=NUMERIC},
+      SELL_NUM = #{sellNum,jdbcType=NUMERIC},
+      STOCK_UPDATE = #{stockUpdate,jdbcType=TIMESTAMP},
+      ITEM_PRICE = #{itemPrice,jdbcType=NUMERIC},
+      NEW_PRICE = #{newPrice,jdbcType=NUMERIC},
+      SELL_PRICE = #{sellPrice,jdbcType=NUMERIC},
+      PRICE_UPDATE = #{priceUpdate,jdbcType=TIMESTAMP},
+      NEED_UPDATE = #{needUpdate,jdbcType=VARCHAR},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      FEED_ID = #{feedId,jdbcType=VARCHAR},
+      JU_NUM = #{juNum,jdbcType=NUMERIC},
+      CURRENT_JU_NUM = #{currentJuNum,jdbcType=NUMERIC},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CONFIRM_PERSON = #{confirmPerson,jdbcType=VARCHAR},
+      WARE_HOUSE = #{wareHouse,jdbcType=VARCHAR}
+    where SKU_CODE = #{skuCode,jdbcType=VARCHAR}
+      and MALL_NO = #{mallNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

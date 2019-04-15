@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.ReceiptInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.ReceiptInfo" >
+    <id column="RID" property="rid" jdbcType="VARCHAR" />
+    <result column="MALL_NO" property="mallNo" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_NO" property="warehouseNo" jdbcType="VARCHAR" />
+    <result column="RECEIPT_TYPE" property="receiptType" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="WHO_PAY" property="whoPay" jdbcType="VARCHAR" />
+    <result column="POST_FEE" property="postFee" jdbcType="NUMERIC" />
+    <result column="WL_NAME" property="wlName" jdbcType="VARCHAR" />
+    <result column="WL_NO" property="wlNo" jdbcType="VARCHAR" />
+    <result column="OID" property="oid" jdbcType="VARCHAR" />
+    <result column="TID" property="tid" jdbcType="VARCHAR" />
+    <result column="WID" property="wid" jdbcType="VARCHAR" />
+    <result column="CONFIRM_TIME" property="confirmTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="IN_TIME" property="inTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSION" property="createPersion" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="IS_FEEDBACK" property="isFeedback" jdbcType="VARCHAR" />
+    <result column="FEEDBACK_TIME" property="feedbackTime" jdbcType="TIMESTAMP" />
+    <result column="CODE_NUM" property="codeNum" jdbcType="NUMERIC" />
+    <result column="CONFIRM_RESON" property="confirmReson" jdbcType="VARCHAR" />
+    <result column="POINT_FEE" property="pointFee" jdbcType="NUMERIC" />
+    <result column="CONFIRM_CODE" property="confirmCode" jdbcType="VARCHAR" />
+    <result column="IS_ALL_RETURN" property="isAllReturn" jdbcType="VARCHAR" />
+    <result column="CLAIMANT_POST_FEE" property="claimantPostFee" jdbcType="NUMERIC" />
+    <result column="COUPON_FEE" property="couponFee" jdbcType="NUMERIC" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RID, MALL_NO, WAREHOUSE_NO, RECEIPT_TYPE, MEMO, WHO_PAY, POST_FEE, WL_NAME, WL_NO, 
+    OID, TID, WID, CONFIRM_TIME, STATUS, IN_TIME, CREATE_PERSION, CREATE_TIME, IS_FEEDBACK, 
+    FEEDBACK_TIME, CODE_NUM, CONFIRM_RESON, POINT_FEE, CONFIRM_CODE, IS_ALL_RETURN, CLAIMANT_POST_FEE, 
+    COUPON_FEE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from WTC_RECEIPT_INFO_T
+    where RID = #{rid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from WTC_RECEIPT_INFO_T
+    where RID = #{rid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.ReceiptInfo" >
+    insert into WTC_RECEIPT_INFO_T (RID, MALL_NO, WAREHOUSE_NO, 
+      RECEIPT_TYPE, MEMO, WHO_PAY, 
+      POST_FEE, WL_NAME, WL_NO, 
+      OID, TID, WID, CONFIRM_TIME, 
+      STATUS, IN_TIME, CREATE_PERSION, 
+      CREATE_TIME, IS_FEEDBACK, FEEDBACK_TIME, 
+      CODE_NUM, CONFIRM_RESON, POINT_FEE, 
+      CONFIRM_CODE, IS_ALL_RETURN, CLAIMANT_POST_FEE, 
+      COUPON_FEE)
+    values (#{rid,jdbcType=VARCHAR}, #{mallNo,jdbcType=VARCHAR}, #{warehouseNo,jdbcType=VARCHAR}, 
+      #{receiptType,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{whoPay,jdbcType=VARCHAR}, 
+      #{postFee,jdbcType=NUMERIC}, #{wlName,jdbcType=VARCHAR}, #{wlNo,jdbcType=VARCHAR}, 
+      #{oid,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, #{wid,jdbcType=VARCHAR}, #{confirmTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{inTime,jdbcType=TIMESTAMP}, #{createPersion,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{isFeedback,jdbcType=VARCHAR}, #{feedbackTime,jdbcType=TIMESTAMP}, 
+      #{codeNum,jdbcType=NUMERIC}, #{confirmReson,jdbcType=VARCHAR}, #{pointFee,jdbcType=NUMERIC}, 
+      #{confirmCode,jdbcType=VARCHAR}, #{isAllReturn,jdbcType=VARCHAR}, #{claimantPostFee,jdbcType=NUMERIC}, 
+      #{couponFee,jdbcType=NUMERIC})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.ReceiptInfo" >
+    insert into WTC_RECEIPT_INFO_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        RID,
+      </if>
+      <if test="mallNo != null" >
+        MALL_NO,
+      </if>
+      <if test="warehouseNo != null" >
+        WAREHOUSE_NO,
+      </if>
+      <if test="receiptType != null" >
+        RECEIPT_TYPE,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="whoPay != null" >
+        WHO_PAY,
+      </if>
+      <if test="postFee != null" >
+        POST_FEE,
+      </if>
+      <if test="wlName != null" >
+        WL_NAME,
+      </if>
+      <if test="wlNo != null" >
+        WL_NO,
+      </if>
+      <if test="oid != null" >
+        OID,
+      </if>
+      <if test="tid != null" >
+        TID,
+      </if>
+      <if test="wid != null" >
+        WID,
+      </if>
+      <if test="confirmTime != null" >
+        CONFIRM_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="inTime != null" >
+        IN_TIME,
+      </if>
+      <if test="createPersion != null" >
+        CREATE_PERSION,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="isFeedback != null" >
+        IS_FEEDBACK,
+      </if>
+      <if test="feedbackTime != null" >
+        FEEDBACK_TIME,
+      </if>
+      <if test="codeNum != null" >
+        CODE_NUM,
+      </if>
+      <if test="confirmReson != null" >
+        CONFIRM_RESON,
+      </if>
+      <if test="pointFee != null" >
+        POINT_FEE,
+      </if>
+      <if test="confirmCode != null" >
+        CONFIRM_CODE,
+      </if>
+      <if test="isAllReturn != null" >
+        IS_ALL_RETURN,
+      </if>
+      <if test="claimantPostFee != null" >
+        CLAIMANT_POST_FEE,
+      </if>
+      <if test="couponFee != null" >
+        COUPON_FEE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        #{rid,jdbcType=VARCHAR},
+      </if>
+      <if test="mallNo != null" >
+        #{mallNo,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseNo != null" >
+        #{warehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptType != null" >
+        #{receiptType,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="whoPay != null" >
+        #{whoPay,jdbcType=VARCHAR},
+      </if>
+      <if test="postFee != null" >
+        #{postFee,jdbcType=NUMERIC},
+      </if>
+      <if test="wlName != null" >
+        #{wlName,jdbcType=VARCHAR},
+      </if>
+      <if test="wlNo != null" >
+        #{wlNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null" >
+        #{wid,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null" >
+        #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPersion != null" >
+        #{createPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFeedback != null" >
+        #{isFeedback,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackTime != null" >
+        #{feedbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="codeNum != null" >
+        #{codeNum,jdbcType=NUMERIC},
+      </if>
+      <if test="confirmReson != null" >
+        #{confirmReson,jdbcType=VARCHAR},
+      </if>
+      <if test="pointFee != null" >
+        #{pointFee,jdbcType=NUMERIC},
+      </if>
+      <if test="confirmCode != null" >
+        #{confirmCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllReturn != null" >
+        #{isAllReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="claimantPostFee != null" >
+        #{claimantPostFee,jdbcType=NUMERIC},
+      </if>
+      <if test="couponFee != null" >
+        #{couponFee,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.ReceiptInfo" >
+    update WTC_RECEIPT_INFO_T
+    <set >
+      <if test="mallNo != null" >
+        MALL_NO = #{mallNo,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseNo != null" >
+        WAREHOUSE_NO = #{warehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptType != null" >
+        RECEIPT_TYPE = #{receiptType,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="whoPay != null" >
+        WHO_PAY = #{whoPay,jdbcType=VARCHAR},
+      </if>
+      <if test="postFee != null" >
+        POST_FEE = #{postFee,jdbcType=NUMERIC},
+      </if>
+      <if test="wlName != null" >
+        WL_NAME = #{wlName,jdbcType=VARCHAR},
+      </if>
+      <if test="wlNo != null" >
+        WL_NO = #{wlNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oid != null" >
+        OID = #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        TID = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null" >
+        WID = #{wid,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null" >
+        CONFIRM_TIME = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null" >
+        IN_TIME = #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPersion != null" >
+        CREATE_PERSION = #{createPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFeedback != null" >
+        IS_FEEDBACK = #{isFeedback,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackTime != null" >
+        FEEDBACK_TIME = #{feedbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="codeNum != null" >
+        CODE_NUM = #{codeNum,jdbcType=NUMERIC},
+      </if>
+      <if test="confirmReson != null" >
+        CONFIRM_RESON = #{confirmReson,jdbcType=VARCHAR},
+      </if>
+      <if test="pointFee != null" >
+        POINT_FEE = #{pointFee,jdbcType=NUMERIC},
+      </if>
+      <if test="confirmCode != null" >
+        CONFIRM_CODE = #{confirmCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllReturn != null" >
+        IS_ALL_RETURN = #{isAllReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="claimantPostFee != null" >
+        CLAIMANT_POST_FEE = #{claimantPostFee,jdbcType=NUMERIC},
+      </if>
+      <if test="couponFee != null" >
+        COUPON_FEE = #{couponFee,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.ReceiptInfo" >
+    update WTC_RECEIPT_INFO_T
+    set MALL_NO = #{mallNo,jdbcType=VARCHAR},
+      WAREHOUSE_NO = #{warehouseNo,jdbcType=VARCHAR},
+      RECEIPT_TYPE = #{receiptType,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      WHO_PAY = #{whoPay,jdbcType=VARCHAR},
+      POST_FEE = #{postFee,jdbcType=NUMERIC},
+      WL_NAME = #{wlName,jdbcType=VARCHAR},
+      WL_NO = #{wlNo,jdbcType=VARCHAR},
+      OID = #{oid,jdbcType=VARCHAR},
+      TID = #{tid,jdbcType=VARCHAR},
+      WID = #{wid,jdbcType=VARCHAR},
+      CONFIRM_TIME = #{confirmTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      IN_TIME = #{inTime,jdbcType=TIMESTAMP},
+      CREATE_PERSION = #{createPersion,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      IS_FEEDBACK = #{isFeedback,jdbcType=VARCHAR},
+      FEEDBACK_TIME = #{feedbackTime,jdbcType=TIMESTAMP},
+      CODE_NUM = #{codeNum,jdbcType=NUMERIC},
+      CONFIRM_RESON = #{confirmReson,jdbcType=VARCHAR},
+      POINT_FEE = #{pointFee,jdbcType=NUMERIC},
+      CONFIRM_CODE = #{confirmCode,jdbcType=VARCHAR},
+      IS_ALL_RETURN = #{isAllReturn,jdbcType=VARCHAR},
+      CLAIMANT_POST_FEE = #{claimantPostFee,jdbcType=NUMERIC},
+      COUPON_FEE = #{couponFee,jdbcType=NUMERIC}
+    where RID = #{rid,jdbcType=VARCHAR}
+  </update>
+</mapper>

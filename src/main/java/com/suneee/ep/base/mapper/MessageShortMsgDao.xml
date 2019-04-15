@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.MessageShortMsgDao" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.MessageShortMsg" >
+    <id column="FLOWNO" property="flowno" jdbcType="VARCHAR" />
+    <result column="SENDPERSON" property="sendperson" jdbcType="VARCHAR" />
+    <result column="RECPERSONS" property="recpersons" jdbcType="VARCHAR" />
+    <result column="MSGCONT" property="msgcont" jdbcType="VARCHAR" />
+    <result column="SENDTIME" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="PRE01" property="pre01" jdbcType="VARCHAR" />
+    <result column="PRE02" property="pre02" jdbcType="VARCHAR" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="VARCHAR" />
+    <result column="OFF_LINE" property="offLine" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FLOWNO, SENDPERSON, RECPERSONS, MSGCONT, SENDTIME, PRE01, PRE02, DEL_FLAG, OFF_LINE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from MESSAGE_SHORTMSG_T
+    where FLOWNO = #{flowno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from MESSAGE_SHORTMSG_T
+    where FLOWNO = #{flowno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.MessageShortMsg" >
+    insert into MESSAGE_SHORTMSG_T (FLOWNO, SENDPERSON, RECPERSONS, 
+      MSGCONT, SENDTIME, PRE01, 
+      PRE02, DEL_FLAG, OFF_LINE
+      )
+    values (#{flowno,jdbcType=VARCHAR}, #{sendperson,jdbcType=VARCHAR}, #{recpersons,jdbcType=VARCHAR}, 
+      #{msgcont,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, #{pre01,jdbcType=VARCHAR}, 
+      #{pre02,jdbcType=VARCHAR}, #{delFlag,jdbcType=VARCHAR}, #{offLine,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.MessageShortMsg" >
+    insert into MESSAGE_SHORTMSG_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="flowno != null" >
+        FLOWNO,
+      </if>
+      <if test="sendperson != null" >
+        SENDPERSON,
+      </if>
+      <if test="recpersons != null" >
+        RECPERSONS,
+      </if>
+      <if test="msgcont != null" >
+        MSGCONT,
+      </if>
+      <if test="sendtime != null" >
+        SENDTIME,
+      </if>
+      <if test="pre01 != null" >
+        PRE01,
+      </if>
+      <if test="pre02 != null" >
+        PRE02,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+      <if test="offLine != null" >
+        OFF_LINE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="flowno != null" >
+        #{flowno,jdbcType=VARCHAR},
+      </if>
+      <if test="sendperson != null" >
+        #{sendperson,jdbcType=VARCHAR},
+      </if>
+      <if test="recpersons != null" >
+        #{recpersons,jdbcType=VARCHAR},
+      </if>
+      <if test="msgcont != null" >
+        #{msgcont,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pre01 != null" >
+        #{pre01,jdbcType=VARCHAR},
+      </if>
+      <if test="pre02 != null" >
+        #{pre02,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="offLine != null" >
+        #{offLine,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.MessageShortMsg" >
+    update MESSAGE_SHORTMSG_T
+    <set >
+      <if test="sendperson != null" >
+        SENDPERSON = #{sendperson,jdbcType=VARCHAR},
+      </if>
+      <if test="recpersons != null" >
+        RECPERSONS = #{recpersons,jdbcType=VARCHAR},
+      </if>
+      <if test="msgcont != null" >
+        MSGCONT = #{msgcont,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        SENDTIME = #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pre01 != null" >
+        PRE01 = #{pre01,jdbcType=VARCHAR},
+      </if>
+      <if test="pre02 != null" >
+        PRE02 = #{pre02,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="offLine != null" >
+        OFF_LINE = #{offLine,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FLOWNO = #{flowno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.MessageShortMsg" >
+    update MESSAGE_SHORTMSG_T
+    set SENDPERSON = #{sendperson,jdbcType=VARCHAR},
+      RECPERSONS = #{recpersons,jdbcType=VARCHAR},
+      MSGCONT = #{msgcont,jdbcType=VARCHAR},
+      SENDTIME = #{sendtime,jdbcType=TIMESTAMP},
+      PRE01 = #{pre01,jdbcType=VARCHAR},
+      PRE02 = #{pre02,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+      OFF_LINE = #{offLine,jdbcType=VARCHAR}
+    where FLOWNO = #{flowno,jdbcType=VARCHAR}
+  </update>
+</mapper>

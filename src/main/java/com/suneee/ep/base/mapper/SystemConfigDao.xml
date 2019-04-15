@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.SystemConfigDao" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.SystemConfig" >
+    <id column="CONFIG_ITEM_KEY" property="configItemKey" jdbcType="VARCHAR" />
+    <result column="VALUE" property="value" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CONFIG_ITEM_KEY, VALUE, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYSTEM_CONFIG_T
+    where CONFIG_ITEM_KEY = #{configItemKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SYSTEM_CONFIG_T
+    where CONFIG_ITEM_KEY = #{configItemKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.SystemConfig" >
+    insert into SYSTEM_CONFIG_T (CONFIG_ITEM_KEY, VALUE, REMARK
+      )
+    values (#{configItemKey,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.SystemConfig" >
+    insert into SYSTEM_CONFIG_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="configItemKey != null" >
+        CONFIG_ITEM_KEY,
+      </if>
+      <if test="value != null" >
+        VALUE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="configItemKey != null" >
+        #{configItemKey,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.SystemConfig" >
+    update SYSTEM_CONFIG_T
+    <set >
+      <if test="value != null" >
+        VALUE = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CONFIG_ITEM_KEY = #{configItemKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.SystemConfig" >
+    update SYSTEM_CONFIG_T
+    set VALUE = #{value,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where CONFIG_ITEM_KEY = #{configItemKey,jdbcType=VARCHAR}
+  </update>
+</mapper>

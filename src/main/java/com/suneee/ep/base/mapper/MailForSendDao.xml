@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.MailForSendDao" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.MailForSend" >
+    <id column="MAIL_ID" property="mailId" jdbcType="NUMERIC" />
+    <result column="SENDED_TIMES" property="sendedTimes" jdbcType="NUMERIC" />
+    <result column="IN_TIMES" property="inTimes" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MAIL_ID, SENDED_TIMES, IN_TIMES
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from TY_MAIL_FOR_SEND_T
+    where MAIL_ID = #{mailId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from TY_MAIL_FOR_SEND_T
+    where MAIL_ID = #{mailId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.MailForSend" >
+    insert into TY_MAIL_FOR_SEND_T (MAIL_ID, SENDED_TIMES, IN_TIMES
+      )
+    values (#{mailId,jdbcType=NUMERIC}, #{sendedTimes,jdbcType=NUMERIC}, #{inTimes,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.MailForSend" >
+    insert into TY_MAIL_FOR_SEND_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mailId != null" >
+        MAIL_ID,
+      </if>
+      <if test="sendedTimes != null" >
+        SENDED_TIMES,
+      </if>
+      <if test="inTimes != null" >
+        IN_TIMES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mailId != null" >
+        #{mailId,jdbcType=NUMERIC},
+      </if>
+      <if test="sendedTimes != null" >
+        #{sendedTimes,jdbcType=NUMERIC},
+      </if>
+      <if test="inTimes != null" >
+        #{inTimes,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.MailForSend" >
+    update TY_MAIL_FOR_SEND_T
+    <set >
+      <if test="sendedTimes != null" >
+        SENDED_TIMES = #{sendedTimes,jdbcType=NUMERIC},
+      </if>
+      <if test="inTimes != null" >
+        IN_TIMES = #{inTimes,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where MAIL_ID = #{mailId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.MailForSend" >
+    update TY_MAIL_FOR_SEND_T
+    set SENDED_TIMES = #{sendedTimes,jdbcType=NUMERIC},
+      IN_TIMES = #{inTimes,jdbcType=TIMESTAMP}
+    where MAIL_ID = #{mailId,jdbcType=NUMERIC}
+  </update>
+</mapper>

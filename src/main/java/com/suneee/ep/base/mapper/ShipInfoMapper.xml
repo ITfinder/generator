@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.ShipInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.ShipInfo" >
+    <id column="OID" property="oid" jdbcType="VARCHAR" />
+    <result column="MALL_NO" property="mallNo" jdbcType="VARCHAR" />
+    <result column="WAREHOUSE_NO" property="warehouseNo" jdbcType="VARCHAR" />
+    <result column="SHIP_TYPE" property="shipType" jdbcType="VARCHAR" />
+    <result column="TID" property="tid" jdbcType="VARCHAR" />
+    <result column="BUYER_NICK" property="buyerNick" jdbcType="VARCHAR" />
+    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+    <result column="RECEIVER_NAME" property="receiverName" jdbcType="VARCHAR" />
+    <result column="RECEIVER_COUNTRY" property="receiverCountry" jdbcType="VARCHAR" />
+    <result column="RECEIVER_STATE" property="receiverState" jdbcType="VARCHAR" />
+    <result column="RECEIVER_CITY" property="receiverCity" jdbcType="VARCHAR" />
+    <result column="RECEIVER_DISTRICT" property="receiverDistrict" jdbcType="VARCHAR" />
+    <result column="RECEIVER_ADDRESS" property="receiverAddress" jdbcType="VARCHAR" />
+    <result column="RECEIVER_ZIP" property="receiverZip" jdbcType="VARCHAR" />
+    <result column="RECEIVER_MOBILE" property="receiverMobile" jdbcType="VARCHAR" />
+    <result column="RECEIVER_PHONE" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="RECEIVER_EMAIL" property="receiverEmail" jdbcType="VARCHAR" />
+    <result column="WL_NAME" property="wlName" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_PERSION" property="createPersion" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="IS_FEEDBACK" property="isFeedback" jdbcType="VARCHAR" />
+    <result column="FEEDBACK_TIME" property="feedbackTime" jdbcType="TIMESTAMP" />
+    <result column="INVOICE_NO" property="invoiceNo" jdbcType="VARCHAR" />
+    <result column="CANCEL_FLAG" property="cancelFlag" jdbcType="VARCHAR" />
+    <result column="CANCEL_RESULT" property="cancelResult" jdbcType="VARCHAR" />
+    <result column="CANCEL_BACK_CODE" property="cancelBackCode" jdbcType="VARCHAR" />
+    <result column="CANCEL_BACK_TIME" property="cancelBackTime" jdbcType="TIMESTAMP" />
+    <result column="CANCEL_BACK_MEMO" property="cancelBackMemo" jdbcType="VARCHAR" />
+    <result column="FEEDBACK_WEIGHT" property="feedbackWeight" jdbcType="NUMERIC" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OID, MALL_NO, WAREHOUSE_NO, SHIP_TYPE, TID, BUYER_NICK, CARD_NO, RECEIVER_NAME, RECEIVER_COUNTRY, 
+    RECEIVER_STATE, RECEIVER_CITY, RECEIVER_DISTRICT, RECEIVER_ADDRESS, RECEIVER_ZIP, 
+    RECEIVER_MOBILE, RECEIVER_PHONE, RECEIVER_EMAIL, WL_NAME, STATUS, CREATE_PERSION, 
+    CREATE_TIME, IS_FEEDBACK, FEEDBACK_TIME, INVOICE_NO, CANCEL_FLAG, CANCEL_RESULT, 
+    CANCEL_BACK_CODE, CANCEL_BACK_TIME, CANCEL_BACK_MEMO, FEEDBACK_WEIGHT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from WTC_SHIP_INFO_T
+    where OID = #{oid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from WTC_SHIP_INFO_T
+    where OID = #{oid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.ShipInfo" >
+    insert into WTC_SHIP_INFO_T (OID, MALL_NO, WAREHOUSE_NO, 
+      SHIP_TYPE, TID, BUYER_NICK, 
+      CARD_NO, RECEIVER_NAME, RECEIVER_COUNTRY, 
+      RECEIVER_STATE, RECEIVER_CITY, RECEIVER_DISTRICT, 
+      RECEIVER_ADDRESS, RECEIVER_ZIP, RECEIVER_MOBILE, 
+      RECEIVER_PHONE, RECEIVER_EMAIL, WL_NAME, 
+      STATUS, CREATE_PERSION, CREATE_TIME, 
+      IS_FEEDBACK, FEEDBACK_TIME, INVOICE_NO, 
+      CANCEL_FLAG, CANCEL_RESULT, CANCEL_BACK_CODE, 
+      CANCEL_BACK_TIME, CANCEL_BACK_MEMO, FEEDBACK_WEIGHT
+      )
+    values (#{oid,jdbcType=VARCHAR}, #{mallNo,jdbcType=VARCHAR}, #{warehouseNo,jdbcType=VARCHAR}, 
+      #{shipType,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, #{buyerNick,jdbcType=VARCHAR}, 
+      #{cardNo,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, #{receiverCountry,jdbcType=VARCHAR}, 
+      #{receiverState,jdbcType=VARCHAR}, #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, 
+      #{receiverAddress,jdbcType=VARCHAR}, #{receiverZip,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, 
+      #{receiverPhone,jdbcType=VARCHAR}, #{receiverEmail,jdbcType=VARCHAR}, #{wlName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createPersion,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isFeedback,jdbcType=VARCHAR}, #{feedbackTime,jdbcType=TIMESTAMP}, #{invoiceNo,jdbcType=VARCHAR}, 
+      #{cancelFlag,jdbcType=VARCHAR}, #{cancelResult,jdbcType=VARCHAR}, #{cancelBackCode,jdbcType=VARCHAR}, 
+      #{cancelBackTime,jdbcType=TIMESTAMP}, #{cancelBackMemo,jdbcType=VARCHAR}, #{feedbackWeight,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.ShipInfo" >
+    insert into WTC_SHIP_INFO_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        OID,
+      </if>
+      <if test="mallNo != null" >
+        MALL_NO,
+      </if>
+      <if test="warehouseNo != null" >
+        WAREHOUSE_NO,
+      </if>
+      <if test="shipType != null" >
+        SHIP_TYPE,
+      </if>
+      <if test="tid != null" >
+        TID,
+      </if>
+      <if test="buyerNick != null" >
+        BUYER_NICK,
+      </if>
+      <if test="cardNo != null" >
+        CARD_NO,
+      </if>
+      <if test="receiverName != null" >
+        RECEIVER_NAME,
+      </if>
+      <if test="receiverCountry != null" >
+        RECEIVER_COUNTRY,
+      </if>
+      <if test="receiverState != null" >
+        RECEIVER_STATE,
+      </if>
+      <if test="receiverCity != null" >
+        RECEIVER_CITY,
+      </if>
+      <if test="receiverDistrict != null" >
+        RECEIVER_DISTRICT,
+      </if>
+      <if test="receiverAddress != null" >
+        RECEIVER_ADDRESS,
+      </if>
+      <if test="receiverZip != null" >
+        RECEIVER_ZIP,
+      </if>
+      <if test="receiverMobile != null" >
+        RECEIVER_MOBILE,
+      </if>
+      <if test="receiverPhone != null" >
+        RECEIVER_PHONE,
+      </if>
+      <if test="receiverEmail != null" >
+        RECEIVER_EMAIL,
+      </if>
+      <if test="wlName != null" >
+        WL_NAME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createPersion != null" >
+        CREATE_PERSION,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="isFeedback != null" >
+        IS_FEEDBACK,
+      </if>
+      <if test="feedbackTime != null" >
+        FEEDBACK_TIME,
+      </if>
+      <if test="invoiceNo != null" >
+        INVOICE_NO,
+      </if>
+      <if test="cancelFlag != null" >
+        CANCEL_FLAG,
+      </if>
+      <if test="cancelResult != null" >
+        CANCEL_RESULT,
+      </if>
+      <if test="cancelBackCode != null" >
+        CANCEL_BACK_CODE,
+      </if>
+      <if test="cancelBackTime != null" >
+        CANCEL_BACK_TIME,
+      </if>
+      <if test="cancelBackMemo != null" >
+        CANCEL_BACK_MEMO,
+      </if>
+      <if test="feedbackWeight != null" >
+        FEEDBACK_WEIGHT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="mallNo != null" >
+        #{mallNo,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseNo != null" >
+        #{warehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipType != null" >
+        #{shipType,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerNick != null" >
+        #{buyerNick,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCountry != null" >
+        #{receiverCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverState != null" >
+        #{receiverState,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrict != null" >
+        #{receiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZip != null" >
+        #{receiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null" >
+        #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverEmail != null" >
+        #{receiverEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="wlName != null" >
+        #{wlName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createPersion != null" >
+        #{createPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFeedback != null" >
+        #{isFeedback,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackTime != null" >
+        #{feedbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceNo != null" >
+        #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelFlag != null" >
+        #{cancelFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelResult != null" >
+        #{cancelResult,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelBackCode != null" >
+        #{cancelBackCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelBackTime != null" >
+        #{cancelBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelBackMemo != null" >
+        #{cancelBackMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackWeight != null" >
+        #{feedbackWeight,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.ShipInfo" >
+    update WTC_SHIP_INFO_T
+    <set >
+      <if test="mallNo != null" >
+        MALL_NO = #{mallNo,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseNo != null" >
+        WAREHOUSE_NO = #{warehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipType != null" >
+        SHIP_TYPE = #{shipType,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        TID = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerNick != null" >
+        BUYER_NICK = #{buyerNick,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        RECEIVER_NAME = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCountry != null" >
+        RECEIVER_COUNTRY = #{receiverCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverState != null" >
+        RECEIVER_STATE = #{receiverState,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        RECEIVER_CITY = #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrict != null" >
+        RECEIVER_DISTRICT = #{receiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        RECEIVER_ADDRESS = #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZip != null" >
+        RECEIVER_ZIP = #{receiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null" >
+        RECEIVER_MOBILE = #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        RECEIVER_PHONE = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverEmail != null" >
+        RECEIVER_EMAIL = #{receiverEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="wlName != null" >
+        WL_NAME = #{wlName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createPersion != null" >
+        CREATE_PERSION = #{createPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isFeedback != null" >
+        IS_FEEDBACK = #{isFeedback,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackTime != null" >
+        FEEDBACK_TIME = #{feedbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceNo != null" >
+        INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelFlag != null" >
+        CANCEL_FLAG = #{cancelFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelResult != null" >
+        CANCEL_RESULT = #{cancelResult,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelBackCode != null" >
+        CANCEL_BACK_CODE = #{cancelBackCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelBackTime != null" >
+        CANCEL_BACK_TIME = #{cancelBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelBackMemo != null" >
+        CANCEL_BACK_MEMO = #{cancelBackMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackWeight != null" >
+        FEEDBACK_WEIGHT = #{feedbackWeight,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where OID = #{oid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.ShipInfo" >
+    update WTC_SHIP_INFO_T
+    set MALL_NO = #{mallNo,jdbcType=VARCHAR},
+      WAREHOUSE_NO = #{warehouseNo,jdbcType=VARCHAR},
+      SHIP_TYPE = #{shipType,jdbcType=VARCHAR},
+      TID = #{tid,jdbcType=VARCHAR},
+      BUYER_NICK = #{buyerNick,jdbcType=VARCHAR},
+      CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      RECEIVER_NAME = #{receiverName,jdbcType=VARCHAR},
+      RECEIVER_COUNTRY = #{receiverCountry,jdbcType=VARCHAR},
+      RECEIVER_STATE = #{receiverState,jdbcType=VARCHAR},
+      RECEIVER_CITY = #{receiverCity,jdbcType=VARCHAR},
+      RECEIVER_DISTRICT = #{receiverDistrict,jdbcType=VARCHAR},
+      RECEIVER_ADDRESS = #{receiverAddress,jdbcType=VARCHAR},
+      RECEIVER_ZIP = #{receiverZip,jdbcType=VARCHAR},
+      RECEIVER_MOBILE = #{receiverMobile,jdbcType=VARCHAR},
+      RECEIVER_PHONE = #{receiverPhone,jdbcType=VARCHAR},
+      RECEIVER_EMAIL = #{receiverEmail,jdbcType=VARCHAR},
+      WL_NAME = #{wlName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_PERSION = #{createPersion,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      IS_FEEDBACK = #{isFeedback,jdbcType=VARCHAR},
+      FEEDBACK_TIME = #{feedbackTime,jdbcType=TIMESTAMP},
+      INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+      CANCEL_FLAG = #{cancelFlag,jdbcType=VARCHAR},
+      CANCEL_RESULT = #{cancelResult,jdbcType=VARCHAR},
+      CANCEL_BACK_CODE = #{cancelBackCode,jdbcType=VARCHAR},
+      CANCEL_BACK_TIME = #{cancelBackTime,jdbcType=TIMESTAMP},
+      CANCEL_BACK_MEMO = #{cancelBackMemo,jdbcType=VARCHAR},
+      FEEDBACK_WEIGHT = #{feedbackWeight,jdbcType=NUMERIC}
+    where OID = #{oid,jdbcType=VARCHAR}
+  </update>
+</mapper>

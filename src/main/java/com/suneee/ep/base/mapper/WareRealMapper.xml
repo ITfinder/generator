@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.WareRealMapper" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.WareReal" >
+    <id column="WARE_ID" property="wareId" jdbcType="NUMERIC" />
+    <result column="TYPE_CODE" property="typeCode" jdbcType="VARCHAR" />
+    <result column="STORE_ID" property="storeId" jdbcType="VARCHAR" />
+    <result column="WARE_NAME" property="wareName" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="DISTRICT" property="district" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    WARE_ID, TYPE_CODE, STORE_ID, WARE_NAME, PROVINCE, CITY, DISTRICT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from WMS_WARE_REAL_T
+    where WARE_ID = #{wareId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from WMS_WARE_REAL_T
+    where WARE_ID = #{wareId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.WareReal" >
+    insert into WMS_WARE_REAL_T (WARE_ID, TYPE_CODE, STORE_ID, 
+      WARE_NAME, PROVINCE, CITY, 
+      DISTRICT)
+    values (#{wareId,jdbcType=NUMERIC}, #{typeCode,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR}, 
+      #{wareName,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.WareReal" >
+    insert into WMS_WARE_REAL_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wareId != null" >
+        WARE_ID,
+      </if>
+      <if test="typeCode != null" >
+        TYPE_CODE,
+      </if>
+      <if test="storeId != null" >
+        STORE_ID,
+      </if>
+      <if test="wareName != null" >
+        WARE_NAME,
+      </if>
+      <if test="province != null" >
+        PROVINCE,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="district != null" >
+        DISTRICT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wareId != null" >
+        #{wareId,jdbcType=NUMERIC},
+      </if>
+      <if test="typeCode != null" >
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="wareName != null" >
+        #{wareName,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.WareReal" >
+    update WMS_WARE_REAL_T
+    <set >
+      <if test="typeCode != null" >
+        TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        STORE_ID = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="wareName != null" >
+        WARE_NAME = #{wareName,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        DISTRICT = #{district,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WARE_ID = #{wareId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.WareReal" >
+    update WMS_WARE_REAL_T
+    set TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
+      STORE_ID = #{storeId,jdbcType=VARCHAR},
+      WARE_NAME = #{wareName,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      DISTRICT = #{district,jdbcType=VARCHAR}
+    where WARE_ID = #{wareId,jdbcType=NUMERIC}
+  </update>
+</mapper>

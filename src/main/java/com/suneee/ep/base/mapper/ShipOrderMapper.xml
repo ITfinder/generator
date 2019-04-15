@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suneee.ep.base.dao.ShipOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.suneee.ep.base.model.ShipOrder" >
+    <id column="ORDER_ID" property="orderId" jdbcType="NUMERIC" />
+    <result column="OID" property="oid" jdbcType="VARCHAR" />
+    <result column="TID" property="tid" jdbcType="VARCHAR" />
+    <result column="BUYER_MEMO" property="buyerMemo" jdbcType="VARCHAR" />
+    <result column="CS_MEMO" property="csMemo" jdbcType="VARCHAR" />
+    <result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_FEE" property="payFee" jdbcType="NUMERIC" />
+    <result column="NEED_INVOICE" property="needInvoice" jdbcType="VARCHAR" />
+    <result column="OUT_STATUS" property="outStatus" jdbcType="VARCHAR" />
+    <result column="OUT_TIME" property="outTime" jdbcType="TIMESTAMP" />
+    <result column="WL_NAME" property="wlName" jdbcType="VARCHAR" />
+    <result column="WL_NO" property="wlNo" jdbcType="VARCHAR" />
+    <result column="WTC_CARD_NO" property="wtcCardNo" jdbcType="VARCHAR" />
+    <result column="WID" property="wid" jdbcType="VARCHAR" />
+    <result column="INVOICE_NO" property="invoiceNo" jdbcType="VARCHAR" />
+    <result column="TID_ORIGIN" property="tidOrigin" jdbcType="VARCHAR" />
+    <result column="WID_ORIGIN" property="widOrigin" jdbcType="VARCHAR" />
+    <result column="INVOICE_CODE" property="invoiceCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORDER_ID, OID, TID, BUYER_MEMO, CS_MEMO, PAY_TIME, PAY_FEE, NEED_INVOICE, OUT_STATUS, 
+    OUT_TIME, WL_NAME, WL_NO, WTC_CARD_NO, WID, INVOICE_NO, TID_ORIGIN, WID_ORIGIN, INVOICE_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from WTC_SHIP_ORDER_T
+    where ORDER_ID = #{orderId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from WTC_SHIP_ORDER_T
+    where ORDER_ID = #{orderId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.suneee.ep.base.model.ShipOrder" >
+    insert into WTC_SHIP_ORDER_T (ORDER_ID, OID, TID, 
+      BUYER_MEMO, CS_MEMO, PAY_TIME, 
+      PAY_FEE, NEED_INVOICE, OUT_STATUS, 
+      OUT_TIME, WL_NAME, WL_NO, 
+      WTC_CARD_NO, WID, INVOICE_NO, 
+      TID_ORIGIN, WID_ORIGIN, INVOICE_CODE
+      )
+    values (#{orderId,jdbcType=NUMERIC}, #{oid,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, 
+      #{buyerMemo,jdbcType=VARCHAR}, #{csMemo,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{payFee,jdbcType=NUMERIC}, #{needInvoice,jdbcType=VARCHAR}, #{outStatus,jdbcType=VARCHAR}, 
+      #{outTime,jdbcType=TIMESTAMP}, #{wlName,jdbcType=VARCHAR}, #{wlNo,jdbcType=VARCHAR}, 
+      #{wtcCardNo,jdbcType=VARCHAR}, #{wid,jdbcType=VARCHAR}, #{invoiceNo,jdbcType=VARCHAR}, 
+      #{tidOrigin,jdbcType=VARCHAR}, #{widOrigin,jdbcType=VARCHAR}, #{invoiceCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.suneee.ep.base.model.ShipOrder" >
+    insert into WTC_SHIP_ORDER_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="oid != null" >
+        OID,
+      </if>
+      <if test="tid != null" >
+        TID,
+      </if>
+      <if test="buyerMemo != null" >
+        BUYER_MEMO,
+      </if>
+      <if test="csMemo != null" >
+        CS_MEMO,
+      </if>
+      <if test="payTime != null" >
+        PAY_TIME,
+      </if>
+      <if test="payFee != null" >
+        PAY_FEE,
+      </if>
+      <if test="needInvoice != null" >
+        NEED_INVOICE,
+      </if>
+      <if test="outStatus != null" >
+        OUT_STATUS,
+      </if>
+      <if test="outTime != null" >
+        OUT_TIME,
+      </if>
+      <if test="wlName != null" >
+        WL_NAME,
+      </if>
+      <if test="wlNo != null" >
+        WL_NO,
+      </if>
+      <if test="wtcCardNo != null" >
+        WTC_CARD_NO,
+      </if>
+      <if test="wid != null" >
+        WID,
+      </if>
+      <if test="invoiceNo != null" >
+        INVOICE_NO,
+      </if>
+      <if test="tidOrigin != null" >
+        TID_ORIGIN,
+      </if>
+      <if test="widOrigin != null" >
+        WID_ORIGIN,
+      </if>
+      <if test="invoiceCode != null" >
+        INVOICE_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=NUMERIC},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMemo != null" >
+        #{buyerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="csMemo != null" >
+        #{csMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payFee != null" >
+        #{payFee,jdbcType=NUMERIC},
+      </if>
+      <if test="needInvoice != null" >
+        #{needInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="outStatus != null" >
+        #{outStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outTime != null" >
+        #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wlName != null" >
+        #{wlName,jdbcType=VARCHAR},
+      </if>
+      <if test="wlNo != null" >
+        #{wlNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wtcCardNo != null" >
+        #{wtcCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null" >
+        #{wid,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNo != null" >
+        #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tidOrigin != null" >
+        #{tidOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="widOrigin != null" >
+        #{widOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCode != null" >
+        #{invoiceCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suneee.ep.base.model.ShipOrder" >
+    update WTC_SHIP_ORDER_T
+    <set >
+      <if test="oid != null" >
+        OID = #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        TID = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMemo != null" >
+        BUYER_MEMO = #{buyerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="csMemo != null" >
+        CS_MEMO = #{csMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payFee != null" >
+        PAY_FEE = #{payFee,jdbcType=NUMERIC},
+      </if>
+      <if test="needInvoice != null" >
+        NEED_INVOICE = #{needInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="outStatus != null" >
+        OUT_STATUS = #{outStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outTime != null" >
+        OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wlName != null" >
+        WL_NAME = #{wlName,jdbcType=VARCHAR},
+      </if>
+      <if test="wlNo != null" >
+        WL_NO = #{wlNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wtcCardNo != null" >
+        WTC_CARD_NO = #{wtcCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null" >
+        WID = #{wid,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNo != null" >
+        INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tidOrigin != null" >
+        TID_ORIGIN = #{tidOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="widOrigin != null" >
+        WID_ORIGIN = #{widOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCode != null" >
+        INVOICE_CODE = #{invoiceCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suneee.ep.base.model.ShipOrder" >
+    update WTC_SHIP_ORDER_T
+    set OID = #{oid,jdbcType=VARCHAR},
+      TID = #{tid,jdbcType=VARCHAR},
+      BUYER_MEMO = #{buyerMemo,jdbcType=VARCHAR},
+      CS_MEMO = #{csMemo,jdbcType=VARCHAR},
+      PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      PAY_FEE = #{payFee,jdbcType=NUMERIC},
+      NEED_INVOICE = #{needInvoice,jdbcType=VARCHAR},
+      OUT_STATUS = #{outStatus,jdbcType=VARCHAR},
+      OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+      WL_NAME = #{wlName,jdbcType=VARCHAR},
+      WL_NO = #{wlNo,jdbcType=VARCHAR},
+      WTC_CARD_NO = #{wtcCardNo,jdbcType=VARCHAR},
+      WID = #{wid,jdbcType=VARCHAR},
+      INVOICE_NO = #{invoiceNo,jdbcType=VARCHAR},
+      TID_ORIGIN = #{tidOrigin,jdbcType=VARCHAR},
+      WID_ORIGIN = #{widOrigin,jdbcType=VARCHAR},
+      INVOICE_CODE = #{invoiceCode,jdbcType=VARCHAR}
+    where ORDER_ID = #{orderId,jdbcType=NUMERIC}
+  </update>
+</mapper>
