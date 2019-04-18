@@ -1,49 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE generatorConfiguration
-        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
     <classPathEntry
-            location="F:/ojdbc8.jar"/>
-    <context id="my" targetRuntime="MyBatis3">
-        <commentGenerator>
-            <property name="suppressDate" value="false"/>
-            <property name="suppressAllComments" value="true"/>
-        </commentGenerator>
-
-        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                        connectionURL="jdbc:oracle:thin:@10.82.25.68:1521:OMSUAT" userId="omsuat"
-                        password="bqSq4txedn"/>
-
-        <javaModelGenerator targetPackage="com.suneee.ep.base.model"
-                            targetProject="C:/Users/qdf/git/generator/src/main/java">
-            <property name="enableSubPackages" value="true"/>
-            <property name="trimStrings" value="true"/>
-        </javaModelGenerator>
-
-        <sqlMapGenerator targetPackage="com.suneee.ep.base.mapper"
-                         targetProject="C:/Users/qdf/git/generator/src/main/java">
-            <property name="enableSubPackages" value="true"/>
-        </sqlMapGenerator>
-
-        <javaClientGenerator targetPackage="com.suneee.ep.base.dao"
-                             targetProject="C:/Users/qdf/git/generator/src/main/java" type="XMLMAPPER">
-            <property name="enableSubPackages" value="true"/>
-        </javaClientGenerator>
-
-        <!--<table tableName="T_FEE_AGTBILL" domainObjectName="FeeAgentBill"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"/>-->
-
-        <table tableName="TY_MAIL_FOR_SEND_T" domainObjectName="MailForSend"
+            location="C:\Users\yzh0061\.m2\repository\org\postgresql\postgresql\9.3-1102-jdbc4\postgresql-9.3-1102-jdbc4.jar" />
+    <context id="context1">
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://192.168.1.181:5432/goods_center" userId="postgres"
+                        password="123456" />
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="com.travelzen.entity"
+                            targetProject="F:\generator\generator\src\main\java" />
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mybatis"
+                         targetProject="F:\generator\generator\src\main\java" />
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator
+                targetPackage="com.travel.dao"
+                targetProject="F:\generator\generator\src\main\java"
+                type="XMLMAPPER" />
+        <!-- 要生成哪些表-->
+        <table tableName="product" domainObjectName="Product"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
         </table>
-
+        <!-- <table schema="zpeng" tableName="stu" domainObjectName="Student"
+            enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
+            enableDeleteByPrimaryKey="true" enableSelectByExample="false"
+            enableDeleteByExample="false" enableCountByExample="false"
+            enableUpdateByExample="false">
+            <columnOverride column="" property="" />
+        </table> -->
     </context>
 </generatorConfiguration>
