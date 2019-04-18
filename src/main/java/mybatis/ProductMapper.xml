@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.travel.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.travelzen.entity.Product" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="face_value" property="faceValue" jdbcType="NUMERIC" />
+    <result column="price_none_tax" property="priceNoneTax" jdbcType="NUMERIC" />
+    <result column="price_contain_tax" property="priceContainTax" jdbcType="NUMERIC" />
+    <result column="price_cost_tax" property="priceCostTax" jdbcType="NUMERIC" />
+    <result column="is_distinguish_server" property="isDistinguishServer" jdbcType="BIT" />
+    <result column="distinguish_server_id" property="distinguishServerId" jdbcType="VARCHAR" />
+    <result column="use_help" property="useHelp" jdbcType="VARCHAR" />
+    <result column="use_scope" property="useScope" jdbcType="VARCHAR" />
+    <result column="order_threshold" property="orderThreshold" jdbcType="INTEGER" />
+    <result column="threshold_type" property="thresholdType" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="request_params" property="requestParams" jdbcType="VARCHAR" />
+    <result column="valid_duration" property="validDuration" jdbcType="NUMERIC" />
+    <result column="valid_duration_unit" property="validDurationUnit" jdbcType="INTEGER" />
+    <result column="platform_type" property="platformType" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="creator_id" property="creatorId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_operator" property="lastOperator" jdbcType="VARCHAR" />
+    <result column="last_operator_id" property="lastOperatorId" jdbcType="BIGINT" />
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP" />
+    <result column="invoice_type" property="invoiceType" jdbcType="INTEGER" />
+    <result column="verify_state" property="verifyState" jdbcType="INTEGER" />
+    <result column="verify_staff" property="verifyStaff" jdbcType="VARCHAR" />
+    <result column="verify_time" property="verifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, number, face_value, price_none_tax, price_contain_tax, price_cost_tax, is_distinguish_server, 
+    distinguish_server_id, use_help, use_scope, order_threshold, threshold_type, type, 
+    status, remark, is_deleted, category_id, request_params, valid_duration, valid_duration_unit, 
+    platform_type, creator, creator_id, create_time, last_operator, last_operator_id, 
+    last_modify_time, invoice_type, verify_state, verify_staff, verify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from product
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.travelzen.entity.Product" >
+    insert into product (id, number, face_value, 
+      price_none_tax, price_contain_tax, price_cost_tax, 
+      is_distinguish_server, distinguish_server_id, use_help, 
+      use_scope, order_threshold, threshold_type, 
+      type, status, remark, 
+      is_deleted, category_id, request_params, 
+      valid_duration, valid_duration_unit, platform_type, 
+      creator, creator_id, create_time, 
+      last_operator, last_operator_id, last_modify_time, 
+      invoice_type, verify_state, verify_staff, 
+      verify_time)
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=VARCHAR}, #{faceValue,jdbcType=NUMERIC}, 
+      #{priceNoneTax,jdbcType=NUMERIC}, #{priceContainTax,jdbcType=NUMERIC}, #{priceCostTax,jdbcType=NUMERIC}, 
+      #{isDistinguishServer,jdbcType=BIT}, #{distinguishServerId,jdbcType=VARCHAR}, #{useHelp,jdbcType=VARCHAR}, 
+      #{useScope,jdbcType=VARCHAR}, #{orderThreshold,jdbcType=INTEGER}, #{thresholdType,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=BIT}, #{categoryId,jdbcType=BIGINT}, #{requestParams,jdbcType=VARCHAR}, 
+      #{validDuration,jdbcType=NUMERIC}, #{validDurationUnit,jdbcType=INTEGER}, #{platformType,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastOperator,jdbcType=VARCHAR}, #{lastOperatorId,jdbcType=BIGINT}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{invoiceType,jdbcType=INTEGER}, #{verifyState,jdbcType=INTEGER}, #{verifyStaff,jdbcType=VARCHAR}, 
+      #{verifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.travelzen.entity.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="faceValue != null" >
+        face_value,
+      </if>
+      <if test="priceNoneTax != null" >
+        price_none_tax,
+      </if>
+      <if test="priceContainTax != null" >
+        price_contain_tax,
+      </if>
+      <if test="priceCostTax != null" >
+        price_cost_tax,
+      </if>
+      <if test="isDistinguishServer != null" >
+        is_distinguish_server,
+      </if>
+      <if test="distinguishServerId != null" >
+        distinguish_server_id,
+      </if>
+      <if test="useHelp != null" >
+        use_help,
+      </if>
+      <if test="useScope != null" >
+        use_scope,
+      </if>
+      <if test="orderThreshold != null" >
+        order_threshold,
+      </if>
+      <if test="thresholdType != null" >
+        threshold_type,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="requestParams != null" >
+        request_params,
+      </if>
+      <if test="validDuration != null" >
+        valid_duration,
+      </if>
+      <if test="validDurationUnit != null" >
+        valid_duration_unit,
+      </if>
+      <if test="platformType != null" >
+        platform_type,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastOperator != null" >
+        last_operator,
+      </if>
+      <if test="lastOperatorId != null" >
+        last_operator_id,
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time,
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type,
+      </if>
+      <if test="verifyState != null" >
+        verify_state,
+      </if>
+      <if test="verifyStaff != null" >
+        verify_staff,
+      </if>
+      <if test="verifyTime != null" >
+        verify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="faceValue != null" >
+        #{faceValue,jdbcType=NUMERIC},
+      </if>
+      <if test="priceNoneTax != null" >
+        #{priceNoneTax,jdbcType=NUMERIC},
+      </if>
+      <if test="priceContainTax != null" >
+        #{priceContainTax,jdbcType=NUMERIC},
+      </if>
+      <if test="priceCostTax != null" >
+        #{priceCostTax,jdbcType=NUMERIC},
+      </if>
+      <if test="isDistinguishServer != null" >
+        #{isDistinguishServer,jdbcType=BIT},
+      </if>
+      <if test="distinguishServerId != null" >
+        #{distinguishServerId,jdbcType=VARCHAR},
+      </if>
+      <if test="useHelp != null" >
+        #{useHelp,jdbcType=VARCHAR},
+      </if>
+      <if test="useScope != null" >
+        #{useScope,jdbcType=VARCHAR},
+      </if>
+      <if test="orderThreshold != null" >
+        #{orderThreshold,jdbcType=INTEGER},
+      </if>
+      <if test="thresholdType != null" >
+        #{thresholdType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="requestParams != null" >
+        #{requestParams,jdbcType=VARCHAR},
+      </if>
+      <if test="validDuration != null" >
+        #{validDuration,jdbcType=NUMERIC},
+      </if>
+      <if test="validDurationUnit != null" >
+        #{validDurationUnit,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null" >
+        #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOperatorId != null" >
+        #{lastOperatorId,jdbcType=BIGINT},
+      </if>
+      <if test="lastModifyTime != null" >
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="verifyState != null" >
+        #{verifyState,jdbcType=INTEGER},
+      </if>
+      <if test="verifyStaff != null" >
+        #{verifyStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null" >
+        #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.travelzen.entity.Product" >
+    update product
+    <set >
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="faceValue != null" >
+        face_value = #{faceValue,jdbcType=NUMERIC},
+      </if>
+      <if test="priceNoneTax != null" >
+        price_none_tax = #{priceNoneTax,jdbcType=NUMERIC},
+      </if>
+      <if test="priceContainTax != null" >
+        price_contain_tax = #{priceContainTax,jdbcType=NUMERIC},
+      </if>
+      <if test="priceCostTax != null" >
+        price_cost_tax = #{priceCostTax,jdbcType=NUMERIC},
+      </if>
+      <if test="isDistinguishServer != null" >
+        is_distinguish_server = #{isDistinguishServer,jdbcType=BIT},
+      </if>
+      <if test="distinguishServerId != null" >
+        distinguish_server_id = #{distinguishServerId,jdbcType=VARCHAR},
+      </if>
+      <if test="useHelp != null" >
+        use_help = #{useHelp,jdbcType=VARCHAR},
+      </if>
+      <if test="useScope != null" >
+        use_scope = #{useScope,jdbcType=VARCHAR},
+      </if>
+      <if test="orderThreshold != null" >
+        order_threshold = #{orderThreshold,jdbcType=INTEGER},
+      </if>
+      <if test="thresholdType != null" >
+        threshold_type = #{thresholdType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="requestParams != null" >
+        request_params = #{requestParams,jdbcType=VARCHAR},
+      </if>
+      <if test="validDuration != null" >
+        valid_duration = #{validDuration,jdbcType=NUMERIC},
+      </if>
+      <if test="validDurationUnit != null" >
+        valid_duration_unit = #{validDurationUnit,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        platform_type = #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOperator != null" >
+        last_operator = #{lastOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOperatorId != null" >
+        last_operator_id = #{lastOperatorId,jdbcType=BIGINT},
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type = #{invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="verifyState != null" >
+        verify_state = #{verifyState,jdbcType=INTEGER},
+      </if>
+      <if test="verifyStaff != null" >
+        verify_staff = #{verifyStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null" >
+        verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.travelzen.entity.Product" >
+    update product
+    set number = #{number,jdbcType=VARCHAR},
+      face_value = #{faceValue,jdbcType=NUMERIC},
+      price_none_tax = #{priceNoneTax,jdbcType=NUMERIC},
+      price_contain_tax = #{priceContainTax,jdbcType=NUMERIC},
+      price_cost_tax = #{priceCostTax,jdbcType=NUMERIC},
+      is_distinguish_server = #{isDistinguishServer,jdbcType=BIT},
+      distinguish_server_id = #{distinguishServerId,jdbcType=VARCHAR},
+      use_help = #{useHelp,jdbcType=VARCHAR},
+      use_scope = #{useScope,jdbcType=VARCHAR},
+      order_threshold = #{orderThreshold,jdbcType=INTEGER},
+      threshold_type = #{thresholdType,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      category_id = #{categoryId,jdbcType=BIGINT},
+      request_params = #{requestParams,jdbcType=VARCHAR},
+      valid_duration = #{validDuration,jdbcType=NUMERIC},
+      valid_duration_unit = #{validDurationUnit,jdbcType=INTEGER},
+      platform_type = #{platformType,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_operator = #{lastOperator,jdbcType=VARCHAR},
+      last_operator_id = #{lastOperatorId,jdbcType=BIGINT},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      invoice_type = #{invoiceType,jdbcType=INTEGER},
+      verify_state = #{verifyState,jdbcType=INTEGER},
+      verify_staff = #{verifyStaff,jdbcType=VARCHAR},
+      verify_time = #{verifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
