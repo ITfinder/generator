@@ -60,11 +60,7 @@ public class Product {
 
     private Integer invoiceType;
 
-    private Integer verifyState;
-
-    private String verifyStaff;
-
-    private Date verifyTime;
+    private String name;
 
     public Long getId() {
         return id;
@@ -290,27 +286,11 @@ public class Product {
         this.invoiceType = invoiceType;
     }
 
-    public Integer getVerifyState() {
-        return verifyState;
+    public String getName() {
+        return name;
     }
 
-    public void setVerifyState(Integer verifyState) {
-        this.verifyState = verifyState;
-    }
-
-    public String getVerifyStaff() {
-        return verifyStaff;
-    }
-
-    public void setVerifyStaff(String verifyStaff) {
-        this.verifyStaff = verifyStaff;
-    }
-
-    public Date getVerifyTime() {
-        return verifyTime;
-    }
-
-    public void setVerifyTime(Date verifyTime) {
-        this.verifyTime = verifyTime;
+    public void setName(String name) {
+        this.name = name;
     }
 }
